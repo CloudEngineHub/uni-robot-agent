@@ -96,10 +96,10 @@ jobs:
         env:
           INSTALLER: ${{ matrix.installer }}
         run: python scripts/validation/sdk_release.py dist/uni_robot_agent-[0-9]*.whl "$RUNNER_TEMP/sdk-check" --installer "$INSTALLER"
-      - name: Check upgrade from the initial release and clean uninstall
+      - name: Check upgrade from 0.1.1 and clean uninstall
         env:
           INSTALLER: ${{ matrix.installer }}
-        run: python scripts/validation/sdk_release.py dist/uni_robot_agent-[0-9]*.whl "$RUNNER_TEMP/upgrade-check" --installer "$INSTALLER" --upgrade-from 0.1.0
+        run: python scripts/validation/sdk_release.py dist/uni_robot_agent-[0-9]*.whl "$RUNNER_TEMP/upgrade-check" --installer "$INSTALLER" --upgrade-from 0.1.1
       - name: Verify isolated native dependency contract
         run: python scripts/validation/runtime_release.py dist/uni_robot_agent_runtime-*.whl "$RUNNER_TEMP/runtime-check" --main-wheel dist/uni_robot_agent-[0-9]*.whl
       - name: Check isolated uv CLI installation

@@ -1,6 +1,6 @@
 [project]
 name = "uni-robot-agent"
-version = "0.1.1"
+version = "0.2.0"
 description = "A unified harness for robot-use agents, with CLI, Python SDK, and live monitoring"
 readme = "docs/pypi.md"
 requires-python = ">=3.11"
