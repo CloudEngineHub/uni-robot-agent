@@ -13,4 +13,8 @@ Both packages are built from the same source and contain the same
 Neither package depends on the other. Simulators, assets, checkpoints and GPU
 drivers are separate prerequisites.
 
+Version 0.2.0 must be paired with the 0.2.0 CLI/planner. Upgrade and restart
+environment and actor services together: scalar environment protocol 4 and actor
+HTTP protocol v3 are not compatible with earlier services.
+
 See the [documentation](https://uni-robot-agent.com/docs) for setup and usage.

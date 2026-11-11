@@ -185,7 +185,7 @@ from uni_robot_agent import SetupConfig, setup
 
 runtime = setup(SetupConfig(
     integration="robodojo",
-    wheel=Path("/path/to/uni_robot_agent_runtime-0.1.1-py3-none-any.whl"),
+    wheel=Path("/path/to/uni_robot_agent_runtime-0.2.0-py3-none-any.whl"),
 ), report=print)
 ```
 

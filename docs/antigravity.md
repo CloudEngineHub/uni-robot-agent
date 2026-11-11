@@ -112,7 +112,7 @@ It makes real Qwen requests but performs no robot actions.
 The optional SDK installation can also be checked outside the checkout:
 
 ```bash
-python scripts/validation/sdk_release.py dist/uni_robot_agent-0.1.1-py3-none-any.whl \
+python scripts/validation/sdk_release.py dist/uni_robot_agent-0.2.0-py3-none-any.whl \
   /path/to/new-install-check --antigravity
 ```
 

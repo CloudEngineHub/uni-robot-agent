@@ -33,10 +33,10 @@ to each required setup command. This keeps the native runtime on the same source
 
 ```bash
 python -m pip install 'build>=1' 'twine>=6' 'tomli-w>=1'
-python scripts/release/prepare.py --output-dir ../candidate-0.1.1
-python -m pip install ../candidate-0.1.1/dist/uni_robot_agent-0.1.1-py3-none-any.whl
+python scripts/release/prepare.py --output-dir ../candidate-0.2.0
+python -m pip install ../candidate-0.2.0/dist/uni_robot_agent-0.2.0-py3-none-any.whl
 uni-robot-agent setup --integration robodojo \
-  --wheel ../candidate-0.1.1/dist/uni_robot_agent_runtime-0.1.1-py3-none-any.whl
+  --wheel ../candidate-0.2.0/dist/uni_robot_agent_runtime-0.2.0-py3-none-any.whl
 ```
 
 If you installed a downloaded wheel, pass its actual path directly; no checkout
@@ -75,7 +75,7 @@ final manifest is published atomically. Different preparation inputs require a
 separate cache directory; they never silently replace an existing runtime.
 
 Select the base interpreter with `--python /path/to/python` and a local runtime
-build with `--wheel /path/to/uni_robot_agent_runtime-0.1.1-py3-none-any.whl`. Prepare Linux, NVIDIA drivers,
+build with `--wheel /path/to/uni_robot_agent_runtime-0.2.0-py3-none-any.whl`. Prepare Linux, NVIDIA drivers,
 EGL/Vulkan, sufficient disk space and any required compiler or CUDA toolkit first.
 Setup does not use sudo or modify the system interpreter. For gated SAM3 assets,
 configure Hugging Face access in the process environment before setup.
