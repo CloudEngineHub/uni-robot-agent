@@ -35,7 +35,7 @@
 **Code as Policy** is here: control robots with code. Enable it with
 `--interaction-mode code_as_policy`. [Learn more](docs/code-as-policy.md).
 
-**v0.1.1** fixes fresh RoboDojo setup with isolated simulator dependencies and automatic robot configuration.
+**v0.2.0** brings Clean mode, compact observations, broader Hybrid support and ARX ONE. Upgrade planner and native services together; see the [release notes](CHANGELOG.md#020--2026-11-11).
 See [pip and uv installation](#quick-start) below.
 
 <a id="features"></a>

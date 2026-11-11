@@ -1,7 +1,7 @@
 # Preparing and publishing a release
 
 Distribution: `uni-robot-agent`. Import: `uni_robot_agent`. Current candidate:
-`0.1.1`. Building a candidate, pushing a branch, or creating a tag does not upload
+`0.2.0`. Building a candidate, pushing a branch, or creating a tag does not upload
 this project to a package index.
 
 ## First-release sequence
@@ -32,11 +32,11 @@ Use Python 3.11+ and a source checkout containing the intended release changes:
 
 ```bash
 python -m pip install 'build>=1' 'twine>=6' 'tomli-w>=1'
-python scripts/release/prepare.py --tag v0.1.1 \
-  --output-dir ../uni-robot-agent-0.1.1-candidate
+python scripts/release/prepare.py --tag v0.2.0 \
+  --output-dir ../uni-robot-agent-0.2.0-candidate
 python scripts/validation/sdk_release.py \
-  ../uni-robot-agent-0.1.1-candidate/dist/uni_robot_agent-0.1.1-py3-none-any.whl \
-  ../uni-robot-agent-0.1.1-install-check
+  ../uni-robot-agent-0.2.0-candidate/dist/uni_robot_agent-0.2.0-py3-none-any.whl \
+  ../uni-robot-agent-0.2.0-install-check
 ```
 
 Choose new directories for each candidate/check. `prepare.py` builds independent source
@@ -49,7 +49,7 @@ robot or simulator. Native integration acceptance is a separate validation.
 The GitHub workflow `.github/workflows/release.yml` runs the same build and
 installation checks on pull requests and pushes to `main` or
 `release/open-source`. Its installation matrix covers Linux Python 3.11/3.12,
-macOS Python 3.12, pip, uv, an isolated uv CLI install, upgrade from 0.1.0,
+macOS Python 3.12, pip, uv, an isolated uv CLI install, upgrade from 0.1.1,
 and the native dependency/HTTP contract under Isaac-compatible constraints. Archives and the
 manifest are downloadable workflow artifacts.
 
@@ -74,7 +74,7 @@ and add a pending GitHub publisher with these exact values:
 | Workflow filename | `release.yml` (no directory prefix) |
 | Environment | `pypi` |
 
-For 0.1.1, also register **`uni-robot-agent-runtime`** with the same owner,
+Also register **`uni-robot-agent-runtime`** with the same owner,
 repository, workflow and environment. Both projects need a Trusted Publisher.
 The workflow uploads runtime archives first, then the main package. If the second
 upload fails, rerun the same release tag; the runtime upload skips existing files.
@@ -123,10 +123,10 @@ Before choosing to publish:
 ## Explicit publication
 
 This section uploads publicly. Execute it only when the release is authorized.
-Create `v0.1.1` on the reviewed commit and push that tag. Creating the tag alone
+Create `v0.2.0` on the reviewed commit and push that tag. Creating the tag alone
 does not publish. For the final browser confirmation, open the repository's Actions tab, select
 **Package checks and manual release**, and open **Run workflow**. Select tag
-`v0.1.1` and destination `pypi`. Clicking the final **Run workflow** button starts
+`v0.2.0` and destination `pypi`. Clicking the final **Run workflow** button starts
 public publication after the checks pass; stop before that button during release
 preparation.
 
@@ -135,11 +135,11 @@ Alternatively, from the authenticated repository context, dispatch:
 ```bash
 # Optional rehearsal: this uploads to TestPyPI.
 gh workflow run release.yml --repo Open-RUA/uni-robot-agent \
-  --ref v0.1.1 -f publish_to=testpypi
+  --ref v0.2.0 -f publish_to=testpypi
 
 # Production release: this uploads to PyPI.
 gh workflow run release.yml --repo Open-RUA/uni-robot-agent \
-  --ref v0.1.1 -f publish_to=pypi
+  --ref v0.2.0 -f publish_to=pypi
 ```
 
 Choose only the intended command. Each run builds and checks the selected tag,
@@ -150,14 +150,14 @@ source in the credential-bearing job. Complete any GitHub environment approval
 configured by the project owner and verify the upload job succeeds.
 
 Versioned filenames cannot be replaced on PyPI. Publish fixes under a new version
-such as `0.1.2`; deleting a release does not make its filenames reusable.
+such as `0.2.1`; deleting a release does not make its filenames reusable.
 
 ## Verify the published package
 
 In a new virtual environment, away from a source checkout:
 
 ```bash
-python -m pip install --index-url https://pypi.org/simple uni-robot-agent==0.1.1
+python -m pip install --index-url https://pypi.org/simple uni-robot-agent==0.2.0
 python -m pip check
 uni-robot-agent --version
 python -c 'from uni_robot_agent import Session, SessionConfig, run'
@@ -170,13 +170,13 @@ dependencies from normal PyPI when installing the downloaded wheel:
 
 ```bash
 python -m pip download --index-url https://test.pypi.org/simple --no-deps \
-  --only-binary=:all: --dest candidate-download uni-robot-agent==0.1.1
+  --only-binary=:all: --dest candidate-download uni-robot-agent==0.2.0
 python -m pip install --index-url https://pypi.org/simple \
-  candidate-download/uni_robot_agent-0.1.1-py3-none-any.whl
+  candidate-download/uni_robot_agent-0.2.0-py3-none-any.whl
 ```
 
 On a prepared Linux GPU host, separately validate `setup` without `--wheel` and
 a real task. That path must fetch the same published harness version into the
-native runtime as `uni-robot-agent-runtime==0.1.1`. TestPyPI installation of the outer CLI alone does not redirect
+native runtime as `uni-robot-agent-runtime==0.2.0`. TestPyPI installation of the outer CLI alone does not redirect
 setup's pip index. Simulators, assets, model credentials and GPU drivers remain
 separate prerequisites; see [Deployment](deployment.md).

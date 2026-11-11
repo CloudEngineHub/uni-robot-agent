@@ -81,7 +81,7 @@ importing `uni_robot_agent` in your own Python environment, or
 To install a release candidate without a checkout:
 
 ```bash
-python -m pip install /path/to/uni_robot_agent-0.1.1-py3-none-any.whl
+python -m pip install /path/to/uni_robot_agent-0.2.0-py3-none-any.whl
 ```
 
 ### Integration extras
@@ -135,10 +135,10 @@ runtime wheel to setup:
 
 ```bash
 python -m pip install 'build>=1' 'twine>=6' 'tomli-w>=1'
-python scripts/release/prepare.py --output-dir ../candidate-0.1.1
-python -m pip install ../candidate-0.1.1/dist/uni_robot_agent-0.1.1-py3-none-any.whl
+python scripts/release/prepare.py --output-dir ../candidate-0.2.0
+python -m pip install ../candidate-0.2.0/dist/uni_robot_agent-0.2.0-py3-none-any.whl
 uni-robot-agent setup --integration robodojo \
-  --wheel ../candidate-0.1.1/dist/uni_robot_agent_runtime-0.1.1-py3-none-any.whl
+  --wheel ../candidate-0.2.0/dist/uni_robot_agent_runtime-0.2.0-py3-none-any.whl
 ```
 
 If you downloaded release candidates, pass the runtime wheel to `--wheel`.

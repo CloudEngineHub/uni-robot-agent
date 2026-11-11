@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 0.2.0 — 2026-11-11
+
+Upgrade the CLI/planner and native environment/actor services together, then
+restart those services. This release uses scalar environment protocol 4,
+scalar tool schema 8 and actor HTTP protocol v3; old services are not compatible.
+The main and runtime distributions must be version-matched and installed in
+separate environments. `minimal` remains an alias for `clean`.
+
 - Let environments declare tool settings through their description metadata:
   `finish_statuses` (success, failure, give_up), whole `motion_profiles`, and
   `normalized_opening_tolerance` for measured 0-1 gripper openings.

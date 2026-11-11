@@ -18,6 +18,24 @@ uni-robot-agent --version
 For an isolated CLI, use `uv tool install uni-robot-agent`. For the SDK in a uv
 project, use `uv add uni-robot-agent`.
 
+## New in 0.2.0
+
+- Clean mode exposes `move`, `hold`, `capture_scene` and `finish`, with either
+  calibrated RGB or RGB-only observations, compact JSON and readable image paths.
+- The optional observation window limits old image/calibration context while
+  preserving action history and reasoning.
+- Broader Hybrid support includes dexterous manipulation, mobile manipulation and
+  navigation integrations; native runtime requirements vary by environment.
+- ARX ONE, additional benchmark integrations, agent/provider adapters, Code as
+  Policy improvements and the offline `doctor` command expand the harness.
+
+Upgrade CLI/planner and native services together and restart the services:
+scalar environment protocol 4, scalar tool schema 8 and actor HTTP protocol v3
+are incompatible with older service versions. Install `uni-robot-agent==0.2.0`
+and `uni-robot-agent-runtime==0.2.0` in their **separate** environments; never
+install both distributions together. Existing `--tool-profile minimal` remains
+an alias for `--tool-profile clean`.
+
 ## Run a task
 
 On a Linux GPU host with Python 3.11, prepare RoboDojo once, then run a task:
@@ -59,8 +77,9 @@ print(result.agent_finished, result.task_success, result.session_dir)
 The package includes prompts, skills, deployment recipes and dashboard assets.
 Simulator runtimes, assets, GPU drivers and model weights are prepared separately;
 see the documentation for host requirements. macOS supports the CLI and SDK with
-remote environment services and local replay. Physical-robot workflows are not
-part of this initial release.
+remote environment services and local replay. ARX ONE provides a physical-robot
+integration with separate hardware, driver and calibration requirements; see its
+deployment guide before operating hardware.
 
 Released under the MIT License. Bundled upstream components and external assets
 retain their respective licenses.
